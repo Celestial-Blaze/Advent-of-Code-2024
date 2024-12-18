@@ -20,12 +20,12 @@ for line in day_1_input:
 left_list.sort()
 right_list.sort()
 
-# sum_of_distances = 0
-# for x in range(len(left_list)):
-#     dist = abs(left_list[x] - right_list[x])
-#     sum_of_distances += dist
-#
-# print(sum_of_distances)
+sum_of_distances = 0
+for x in range(len(left_list)):
+    dist = abs(left_list[x] - right_list[x])
+    sum_of_distances += dist
+
+print(sum_of_distances)
 # yay! solved correctly!
 
 # now, solve part 2 with presort mode algorithm (n log n) where our sort was also Tim Sort (n log n)
