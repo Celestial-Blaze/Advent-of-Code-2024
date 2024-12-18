@@ -8,11 +8,13 @@
 # sum up all the distances between the left and the right number pairs
 
 day_1_input = open("Day 1 Input", "r")
-day_1_input = day_1_input.readlines()
+day_1_input_list = day_1_input.readlines()
+day_1_input.close()
+
 left_list = []
 right_list = []
 
-for line in day_1_input:
+for line in day_1_input_list:
     both_lists = line.strip("\n").split("   ")
     left_list.append(int(both_lists[0]))
     right_list.append(int(both_lists[1]))
@@ -28,7 +30,7 @@ for x in range(len(left_list)):
 print(sum_of_distances)
 # yay! solved correctly!
 
-# now, solve part 2 with presort mode algorithm (n log n) where our sort was also Tim Sort (n log n)
+# now, solve part 2 with presort mode style algorithm (n log n) where our sort was also Tim Sort (n log n)
 # find the sum of all similarity scores, where similarity_score = left_list[x] * freq_of_llx_in_rl
 
 similarity_score_sum = 0
