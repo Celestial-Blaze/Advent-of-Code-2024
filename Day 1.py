@@ -32,16 +32,29 @@ right_list.sort()
 # find the sum of all similarity scores, where similarity_score = left_list[x] * freq_of_llx_in_rl
 
 similarity_score_sum = 0
-x_iter = 0
-i = 0
-while i < len(left_list):
-    run_length = 1
-    run_value = left_list[i]  # calculate runs & frequencies for each value in left_list
-    while run_length + i < len(right_list) and right_list[run_length + i] == run_value:
-        run_length += 1
-        x_iter += 1
-    similarity_score_sum += run_length * run_value
-    i += 1
+right_index = 0
 
-print(f"I just did {x_iter} iterations")
-print(similarity_score_sum)
+for value in left_list:  # only checking a few values for now
+    # print(f"checking value: {value} in this for loop iteration")
+    right_frequency = 0  # number of occurrences of the left value in the right list
+    # skip left values that can't be in the sorted right_list (freq = 0)
+    if right_list[right_index] <= value:
+        # print(f"because {right_list[right_index]} is less than or equal to {value}...")
+        # get to a point in the sorted right_list where the value matches
+        while right_list[right_index] < value and right_index < len(right_list)-1:
+            # print("since the values don't match yet...")
+            # print(f"incrementing the right index until we get to a value that matches...{right_index}")
+            right_index += 1
+        # at this point, the right_index is at a position where the value either matches or is the last element
+        while right_index < len(right_list) and right_list[right_index] == value:
+            # print(f"here, the index is not out of bounds and the right_list value matches so")
+            right_frequency += 1  # seen once in the right_list
+            # print(f"adding one to the frequency, it is now {right_frequency}")
+            right_index += 1  # check next value
+            # print("incrementing the right index to check the next value")
+
+    similarity_score = value * right_frequency  # calculate similarity score
+    # print(f"the similarity score for {value} is {similarity_score}")
+    similarity_score_sum += similarity_score  # add the similarity score to the total
+
+print(similarity_score_sum)  # YESSSSSSS FINALLY
